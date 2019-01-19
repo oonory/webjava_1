@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>ショッピングサイト</title>
+</head>
+<body>
+<span class="message" th:text="${message}"></span>
+<form action="#" th:action="@{/shoppingcart}" th:object="${listForm}" method="post">
+  <p>商品名 : <input type="text" th:field="*{name}" />
+    <em th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</em>
+  </p>
+  <p>
+  	<select name="num">
+		<option value="">選択してください</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+	</select>
+  </p>
+  <p><input type="submit" value="カートに追加" /></p>
+</form>
+
+<dl>
+  <th:block th:each="item items">
+    <dt>
+      <span class="item" th:text="${item.item}"></span>
+    </dt>
+  </th:block>
+  <th:block th:each="price prices">
+    <dt>
+      <span class="price" th:text="${item.price}"></span>
+    </dt>
+  </th:block>
+</dl>
+
+</body>
+</html>
